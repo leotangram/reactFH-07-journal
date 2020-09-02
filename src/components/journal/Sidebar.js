@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import JournalEntries from './JournalEntries'
 
 const Sidebar = props => {
   return (
@@ -15,6 +16,7 @@ const Sidebar = props => {
         <i className="far fa-calendar-plus fa-5x" />
         <p className="mt-5">New entry</p>
       </div>
+      <JournalEntries />
     </aside>
   )
 }
