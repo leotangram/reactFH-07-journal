@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import validator from 'validator'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm'
 import { startLoginEmailPassword, startGoogleLogin } from '../../actions/auth'
@@ -9,6 +9,7 @@ import { setErrorAction, removeErrorAction } from '../../actions/ui'
 
 const LoginScreen = props => {
   const dispatch = useDispatch()
+  const { loading } = useSelector(state => state.ui)
 
   const [formValues, handleInputChange] = useForm({
     email: 'leo@gmail.com',
@@ -61,7 +62,11 @@ const LoginScreen = props => {
           value={password}
           onChange={handleInputChange}
         />
-        <button type="submit" className="btn btn-primary btn-block">
+        <button
+          type="submit"
+          className="btn btn-primary btn-block"
+          disabled={loading}
+        >
           Login
         </button>
         <div className="auth__social-networks">

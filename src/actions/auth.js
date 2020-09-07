@@ -1,5 +1,6 @@
 import { types } from '../types/types'
 import { firebase, googleAddProvider } from '../firebase/firebaseConfig'
+import { startLoadingAction, finishLoadingAction } from './ui'
 
 export const startRegisterWithEmailPasswordName = (email, password, name) => {
   return dispatch => {
@@ -16,11 +17,13 @@ export const startRegisterWithEmailPasswordName = (email, password, name) => {
 
 export const startLoginEmailPassword = (email, password) => {
   return dispatch => {
+    dispatch(startLoadingAction())
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(({ user }) => dispatch(loginAction(user.uid, user.displayName)))
       .catch(error => console.log(error))
+      .finally(() => dispatch(finishLoadingAction()))
   }
 }
 
