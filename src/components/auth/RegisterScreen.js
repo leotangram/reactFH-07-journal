@@ -2,12 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import validator from 'validator'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from '../../hooks/useForm'
 import { setErrorAction, removeErrorAction } from '../../actions/ui'
 
 const RegisterScreen = props => {
   const dispatch = useDispatch()
+  const { msgError } = useSelector(state => state.ui)
 
   const [formValues, handleInputChange] = useForm({
     name: 'Leonardo',
@@ -48,7 +49,7 @@ const RegisterScreen = props => {
     <>
       <h3 className="auth__title">Register</h3>
       <form onSubmit={handleRegister}>
-        <div className="auth__alert-error">Hola mundo</div>
+        {msgError && <div className="auth__alert-error">{msgError}</div>}
         <input
           type="text"
           placeholder="Name"
