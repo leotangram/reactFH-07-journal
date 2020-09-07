@@ -10,15 +10,17 @@ export const startRegisterWithEmailPasswordName = (email, password, name) => {
         await user.updateProfile({ displayName: name })
         dispatch(loginAction(user.uid, user.displayName))
       })
-      .catch(e => console.log(e))
+      .catch(error => console.log(error))
   }
 }
 
 export const startLoginEmailPassword = (email, password) => {
   return dispatch => {
-    setTimeout(() => {
-      dispatch(loginAction(123, 'Pedro'))
-    }, 3500)
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(({ user }) => dispatch(loginAction(user.uid, user.displayName)))
+      .catch(error => console.log(error))
   }
 }
 

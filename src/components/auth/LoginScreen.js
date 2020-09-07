@@ -1,9 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import validator from 'validator'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm'
 import { startLoginEmailPassword, startGoogleLogin } from '../../actions/auth'
+import { setErrorAction, removeErrorAction } from '../../actions/ui'
 
 const LoginScreen = props => {
   const dispatch = useDispatch()
@@ -17,11 +19,25 @@ const LoginScreen = props => {
 
   const handleLogin = e => {
     e.preventDefault()
-    dispatch(startLoginEmailPassword(email, password))
+    if (isFormValid()) {
+      dispatch(startLoginEmailPassword(email, password))
+    }
   }
 
   const handleGoogleLogin = () => {
     dispatch(startGoogleLogin())
+  }
+
+  const isFormValid = () => {
+    if (!validator.isEmail(email)) {
+      dispatch(setErrorAction('Email is not valid'))
+      return false
+    } else if (password.length < 5) {
+      dispatch(setErrorAction('Password shoul be at least 6 characters'))
+      return false
+    }
+    dispatch(removeErrorAction())
+    return true
   }
 
   return (
