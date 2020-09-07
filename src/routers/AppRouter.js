@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect
-} from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { firebase } from '../firebase/firebaseConfig'
-import AuthRouter from './AuthRouter'
-import JournalScreen from '../components/journal/JournalScreen'
 import { loginAction } from '../actions/auth'
+import AuthRouter from './AuthRouter'
+import PrivateRoute from './PrivateRoute'
+import PublicRoute from './PublicRoute'
+import JournalScreen from '../components/journal/JournalScreen'
 
 const AppRouter = () => {
   const dispatch = useDispatch()
@@ -28,7 +25,7 @@ const AppRouter = () => {
     })
 
     setChecking(false)
-  }, [dispatch, setChecking, setIsLoggedIn])
+  }, [])
 
   if (checking) {
     return <h1>Espere...</h1>
@@ -38,8 +35,17 @@ const AppRouter = () => {
     <Router>
       <div>
         <Switch>
-          <Route path="/auth" component={AuthRouter} />
-          <Route exact path="/" component={JournalScreen} />
+          <PublicRoute
+            path="/auth"
+            component={AuthRouter}
+            isAuthenticated={isLoggedIn}
+          />
+          <PrivateRoute
+            isAuthenticated={isLoggedIn}
+            exact
+            path="/"
+            component={JournalScreen}
+          />
           <Redirect to="/auth/login" />
         </Switch>
       </div>
