@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm'
-import { login } from '../../actions/auth'
+import { startLoginEmailPassword } from '../../actions/auth'
 
 const LoginScreen = props => {
   const dispatch = useDispatch()
@@ -17,7 +17,7 @@ const LoginScreen = props => {
 
   const handleLogin = e => {
     e.preventDefault()
-    dispatch(login(12345, 'Leonardo'))
+    dispatch(startLoginEmailPassword(email, password))
   }
 
   return (
