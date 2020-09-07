@@ -1,18 +1,35 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import { useForm } from '../../hooks/useForm'
 
 const RegisterScreen = props => {
+  const [formValues, handleInputChange] = useForm({
+    name: 'Leonardo',
+    email: 'leo@gmail.com',
+    password: '123456',
+    confirmPassword: '123456'
+  })
+
+  const { name, email, password, confirmPassword } = formValues
+
+  const handleRegister = e => {
+    e.preventDefault()
+    console.log(name, email, password, confirmPassword)
+  }
+
   return (
     <>
       <h3 className="auth__title">Register</h3>
-      <form>
+      <form onSubmit={handleRegister}>
         <input
           type="text"
           placeholder="Name"
           name="name"
           className="auth__input"
           autoComplete="off"
+          value={name}
+          onChange={handleInputChange}
         />
         <input
           type="text"
@@ -20,18 +37,24 @@ const RegisterScreen = props => {
           name="email"
           className="auth__input"
           autoComplete="off"
+          value={email}
+          onChange={handleInputChange}
         />
         <input
           type="password"
           placeholder="Password"
           name="password"
           className="auth__input"
+          value={password}
+          onChange={handleInputChange}
         />
         <input
           type="password"
           placeholder="Confirm password"
           name="confirmPassword"
           className="auth__input"
+          value={confirmPassword}
+          onChange={handleInputChange}
         />
         <button type="submit" className="btn btn-primary btn-block mb-5">
           Register
