@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm'
-import { startLoginEmailPassword } from '../../actions/auth'
+import { startLoginEmailPassword, startGoogleLogin } from '../../actions/auth'
 
 const LoginScreen = props => {
   const dispatch = useDispatch()
@@ -18,6 +18,10 @@ const LoginScreen = props => {
   const handleLogin = e => {
     e.preventDefault()
     dispatch(startLoginEmailPassword(email, password))
+  }
+
+  const handleGoogleLogin = () => {
+    dispatch(startGoogleLogin())
   }
 
   return (
@@ -46,7 +50,7 @@ const LoginScreen = props => {
         </button>
         <div className="auth__social-networks">
           <p>Login with social networks</p>
-          <div className="google-btn">
+          <div className="google-btn" onClick={handleGoogleLogin}>
             <div className="google-icon-wrapper">
               <img
                 className="google-icon"
