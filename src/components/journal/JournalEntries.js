@@ -5,7 +5,6 @@ import JournalEntry from './JournalEntry'
 
 const JournalEntries = props => {
   const { notes } = useSelector(state => state.notes)
-  console.log('notes', notes)
 
   return (
     <div className="journal__entries">
