@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { firebase } from '../firebase/firebaseConfig'
 import { loginAction } from '../actions/auth'
+import { setNotes } from '../actions/notes'
+import { loadNotes } from '../helpers/loadNotes'
 import AuthRouter from './AuthRouter'
 import PrivateRoute from './PrivateRoute'
 import PublicRoute from './PublicRoute'
@@ -15,10 +17,12 @@ const AppRouter = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged(user => {
+    firebase.auth().onAuthStateChanged(async user => {
       if (user?.uid) {
         dispatch(loginAction(user.uid, user.displayName))
         setIsLoggedIn(true)
+        const notes = await loadNotes(user.uid)
+        dispatch(setNotes(notes))
       } else {
         setIsLoggedIn(false)
       }
