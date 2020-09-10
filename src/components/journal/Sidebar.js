@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
 import { startLogout } from '../../actions/auth'
 import JournalEntries from './JournalEntries'
+import { startNewNote } from '../../actions/notes'
 
 const Sidebar = props => {
   const dispatch = useDispatch()
@@ -10,6 +11,10 @@ const Sidebar = props => {
 
   const handleLogout = () => {
     dispatch(startLogout())
+  }
+
+  const handleAddNew = () => {
+    dispatch(startNewNote())
   }
 
   return (
@@ -23,7 +28,7 @@ const Sidebar = props => {
           Logout
         </button>
       </div>
-      <div className="journal__new-entry">
+      <div className="journal__new-entry" onClick={handleAddNew}>
         <i className="far fa-calendar-plus fa-5x" />
         <p className="mt-5">New entry</p>
       </div>
