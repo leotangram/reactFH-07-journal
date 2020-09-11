@@ -1,11 +1,10 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
 import Sidebar from './Sidebar'
 import NothingSelected from './NothingSelected'
 import NoteScreen from '../notes/NoteScreen'
 
-const JournalScreen = props => {
+const JournalScreen = () => {
   const { active } = useSelector(state => state.notes)
 
   return (
@@ -15,7 +14,5 @@ const JournalScreen = props => {
     </div>
   )
 }
-
-JournalScreen.propTypes = {}
 
 export default JournalScreen

@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import validator from 'validator'
 import { useDispatch, useSelector } from 'react-redux'
@@ -7,7 +6,7 @@ import { useForm } from '../../hooks/useForm'
 import { setErrorAction, removeErrorAction } from '../../actions/ui'
 import { startRegisterWithEmailPasswordName } from '../../actions/auth'
 
-const RegisterScreen = props => {
+const RegisterScreen = () => {
   const dispatch = useDispatch()
   const { msgError } = useSelector(state => state.ui)
 
@@ -98,7 +97,5 @@ const RegisterScreen = props => {
     </>
   )
 }
-
-RegisterScreen.propTypes = {}
 
 export default RegisterScreen

@@ -1,9 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
 import JournalEntry from './JournalEntry'
 
-const JournalEntries = props => {
+const JournalEntries = () => {
   const { notes } = useSelector(state => state.notes)
 
   return (
@@ -14,7 +13,5 @@ const JournalEntries = props => {
     </div>
   )
 }
-
-JournalEntries.propTypes = {}
 
 export default JournalEntries

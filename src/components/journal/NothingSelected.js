@@ -1,7 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
-const NothingSelected = props => {
+const NothingSelected = () => {
   return (
     <div className="nothing__main-content">
       <p>
@@ -11,7 +10,5 @@ const NothingSelected = props => {
     </div>
   )
 }
-
-NothingSelected.propTypes = {}
 
 export default NothingSelected

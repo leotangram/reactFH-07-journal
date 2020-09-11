@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import validator from 'validator'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -7,7 +6,7 @@ import { useForm } from '../../hooks/useForm'
 import { startLoginEmailPassword, startGoogleLogin } from '../../actions/auth'
 import { setErrorAction, removeErrorAction } from '../../actions/ui'
 
-const LoginScreen = props => {
+const LoginScreen = () => {
   const dispatch = useDispatch()
   const { loading } = useSelector(state => state.ui)
 
@@ -94,7 +93,5 @@ const LoginScreen = props => {
     </>
   )
 }
-
-LoginScreen.propTypes = {}
 
 export default LoginScreen

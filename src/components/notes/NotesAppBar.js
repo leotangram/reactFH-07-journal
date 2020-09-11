@@ -1,9 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
 import { startSaveNotes, startUploading } from '../../actions/notes'
 
-const NotesAppBar = props => {
+const NotesAppBar = () => {
   const dispatch = useDispatch()
   const { active: note } = useSelector(state => state.notes)
 
@@ -43,7 +42,5 @@ const NotesAppBar = props => {
     </div>
   )
 }
-
-NotesAppBar.propTypes = {}
 
 export default NotesAppBar

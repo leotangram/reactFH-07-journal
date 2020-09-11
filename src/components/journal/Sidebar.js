@@ -1,11 +1,10 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
 import { startLogout } from '../../actions/auth'
 import JournalEntries from './JournalEntries'
 import { startNewNote } from '../../actions/notes'
 
-const Sidebar = props => {
+const Sidebar = () => {
   const dispatch = useDispatch()
   const { name } = useSelector(state => state.auth)
 
@@ -36,7 +35,5 @@ const Sidebar = props => {
     </aside>
   )
 }
-
-Sidebar.propTypes = {}
 
 export default Sidebar

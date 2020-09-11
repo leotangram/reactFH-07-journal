@@ -1,11 +1,10 @@
 import React, { useEffect, useRef } from 'react'
-import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
 import { activeNote, startDeleting } from '../../actions/notes'
 import { useForm } from '../../hooks/useForm'
 import NotesAppBar from './NotesAppBar'
 
-const NoteScreen = props => {
+const NoteScreen = () => {
   const { active: note } = useSelector(state => state.notes)
   const [formValues, handleInputChange, reset] = useForm(note)
   const dispatch = useDispatch()
@@ -51,7 +50,7 @@ const NoteScreen = props => {
         />
         {note.url && (
           <div className="notes__image">
-            <img src={note.url} alt="image" />
+            <img src={note.url} alt="..." />
           </div>
         )}
       </div>
@@ -61,7 +60,5 @@ const NoteScreen = props => {
     </div>
   )
 }
-
-NoteScreen.propTypes = {}
 
 export default NoteScreen

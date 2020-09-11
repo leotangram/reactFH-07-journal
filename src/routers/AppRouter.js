@@ -27,7 +27,7 @@ const AppRouter = () => {
     })
 
     setChecking(false)
-  }, [])
+  }, [dispatch])
 
   if (checking) {
     return <h1>Wait...</h1>
