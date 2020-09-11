@@ -12,7 +12,23 @@ const firebaseConfig = {
   appId: '1:180487909196:web:efb8e437c07ab1ba5529e9'
 }
 
-firebase.initializeApp(firebaseConfig)
+const firebaseConfigTesting = {
+  apiKey: 'AIzaSyCRwLTBoqCbPUE_Da6tkyURARknRIaVHQ0',
+  authDomain: 'fh-react-development.firebaseapp.com',
+  databaseURL: 'https://fh-react-development.firebaseio.com',
+  projectId: 'fh-react-development',
+  storageBucket: 'fh-react-development.appspot.com',
+  messagingSenderId: '18939830839',
+  appId: '1:18939830839:web:b7d59a227bfc72b7d315b2'
+}
+
+if (process.env.NODE_ENV === 'test') {
+  // testing
+  firebase.initializeApp(firebaseConfigTesting)
+} else {
+  // dev/prod
+  firebase.initializeApp(firebaseConfig)
+}
 
 const db = firebase.firestore()
 const googleAddProvider = new firebase.auth.GoogleAuthProvider()
