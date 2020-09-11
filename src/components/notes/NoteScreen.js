@@ -1,12 +1,14 @@
 import React, { useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { activeNote } from '../../actions/notes'
 import { useForm } from '../../hooks/useForm'
 import NotesAppBar from './NotesAppBar'
 
 const NoteScreen = props => {
   const { active: note } = useSelector(state => state.notes)
   const [formValues, handleInputChange, reset] = useForm(note)
+  const dispatch = useDispatch()
 
   const { body, title } = formValues
 
@@ -18,6 +20,10 @@ const NoteScreen = props => {
       activeId.current = note.id
     }
   }, [note, reset])
+
+  useEffect(() => {
+    dispatch(activeNote(formValues.id, { ...formValues }))
+  }, [formValues, dispatch])
 
   return (
     <div className="notes__main-content">
