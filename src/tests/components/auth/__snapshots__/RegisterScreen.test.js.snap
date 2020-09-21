@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<RegisterScreen /> testing should be displayed correctly 1`] = `
+exports[`Pruebas en <RegisterScreen /> debe de mostrarse correctamente 1`] = `
 Array [
   <h3
     className="auth__title"
